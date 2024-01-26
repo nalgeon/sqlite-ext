@@ -9,6 +9,9 @@ on:
             - Makefile
     workflow_dispatch:
 
+permissions:
+    contents: write
+
 env:
     SQLITE_VERSION: "3.45.0"
 
