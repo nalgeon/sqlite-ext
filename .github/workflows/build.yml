@@ -47,7 +47,8 @@ jobs:
               shell: bash
               run: |
                   make compile-windows
-                  zip --junk-paths dist/misc-win-x64.zip dist/misc/*.dll
+                  cd dist/misc
+                  7z a ../misc-win-x64.zip *.dll
 
             - name: Build for macOS
               if: matrix.os == 'macos-latest'
