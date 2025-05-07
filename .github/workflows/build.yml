@@ -13,7 +13,7 @@ permissions:
     contents: write
 
 env:
-    SQLITE_VERSION: "3.45.0"
+    SQLITE_VERSION: "3.49.1"
 
 jobs:
     build:

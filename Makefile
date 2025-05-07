@@ -1,8 +1,8 @@
 # Copyright (c) 2024 Anton Zhiyanov, MIT License
 # https://github.com/nalgeon/sqlite-ext
 
-SQLITE_RELEASE_YEAR := 2024
-SQLITE_VERSION := 3450000
+SQLITE_RELEASE_YEAR := 2025
+SQLITE_VERSION := 3490100
 
 prepare-dist:
 	mkdir -p dist
@@ -61,6 +61,7 @@ compile-linux:
 	make compile-linux-extension name=misc/spellfix
 	make compile-linux-extension name=misc/sqlar args="-lz"
 	make compile-linux-extension name=misc/stmt
+	make compile-linux-extension name=misc/stmtrand
 	make compile-linux-extension name=misc/totype
 	make compile-linux-extension name=misc/uint
 	make compile-linux-extension name=misc/unionvtab
@@ -109,6 +110,7 @@ compile-windows:
 	make compile-windows-extension name=misc/spellfix
 	# make compile-windows-extension name=misc/sqlar args="-lz"
 	make compile-windows-extension name=misc/stmt
+	make compile-windows-extension name=misc/stmtrand
 	make compile-windows-extension name=misc/totype
 	make compile-windows-extension name=misc/uint
 	make compile-windows-extension name=misc/unionvtab
@@ -157,6 +159,7 @@ compile-macos:
 	make compile-macos-extension name=misc/spellfix
 	make compile-macos-extension name=misc/sqlar args="-lz"
 	make compile-macos-extension name=misc/stmt
+	make compile-macos-extension name=misc/stmtrand
 	make compile-macos-extension name=misc/totype
 	make compile-macos-extension name=misc/uint
 	make compile-macos-extension name=misc/unionvtab
@@ -169,7 +172,7 @@ compile-macos:
 	make compile-macos-extension name=misc/zorder
 
 compile-macos-extension:
-	gcc -O2 -fPIC -shared -Isrc src/$(name).c $(src) -o dist/$(name).x86_64.dylib -target x86_64-apple-macos10.13 $(args)
+	gcc -O2 -fPIC -shared -Isrc src/$(name).c $(src) -o dist/$(name).x86_64.dylib -target x86_64-apple-macos10.15 $(args)
 	gcc -O2 -fPIC -shared -Isrc src/$(name).c $(src) -o dist/$(name).arm64.dylib -target arm64-apple-macos11 $(args)
 	lipo -create -output dist/$(name).dylib dist/$(name).x86_64.dylib dist/$(name).arm64.dylib
 	rm -f dist/$(name).x86_64.dylib dist/$(name).arm64.dylib
